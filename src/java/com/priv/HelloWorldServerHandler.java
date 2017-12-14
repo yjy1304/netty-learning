@@ -3,7 +3,7 @@ package com.priv;
 import io.netty.channel.ChannelInboundHandlerAdapter;
 
 /**
- * Created by Ω°√Ò on 2017/9/21.
+ * Created by ÂÅ•Ê∞ë on 2017/9/21.
  */
 public class HelloWorldServerHandler extends ChannelInboundHandlerAdapter{
 }
