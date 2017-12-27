@@ -12,3 +12,4 @@ logs/
 logback/
 .gitignore
 app.log.dir_IS_UNDEFINED/
+workspace.xml
