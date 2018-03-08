@@ -5,7 +5,7 @@
     <modelVersion>4.0.0</modelVersion>
 
     <groupId>com.priv</groupId>
-    <artifactId>netty-learning</artifactId>
+    <artifactId>netty-client</artifactId>
     <version>1.0-SNAPSHOT</version>
 
     <parent>
@@ -13,11 +13,6 @@
         <artifactId>spring-boot-starter-parent</artifactId>
         <version>1.5.9.RELEASE</version>
     </parent>
-
-    <modules>
-        <module>netty-client</module>
-        <module>netty-server</module>
-    </modules>
 
     <dependencies>
         <dependency>
@@ -42,7 +37,7 @@
             <version>1.16.18</version>
             <scope>provided</scope>
         </dependency>
-        
+
         <dependency>
             <groupId>org.springframework.boot</groupId>
             <artifactId>spring-boot-starter-test</artifactId>
