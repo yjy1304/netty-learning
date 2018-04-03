@@ -1,4 +1,4 @@
-package com.gemyoung;
+package com.gemyoung.btrpc.client;
 
 import org.springframework.boot.SpringApplication;
 import org.springframework.boot.autoconfigure.SpringBootApplication;

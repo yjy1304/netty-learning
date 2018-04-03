@@ -1,4 +1,4 @@
-package com.gemyoung;
+package com.gemyoung.btrpc.client;
 
 /**
  * @author weilong

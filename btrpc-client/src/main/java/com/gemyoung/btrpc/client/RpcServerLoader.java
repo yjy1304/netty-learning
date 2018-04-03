@@ -1,4 +1,4 @@
-package com.gemyoung;
+package com.gemyoung.btrpc.client;
 
 import java.util.concurrent.locks.Condition;
 import java.util.concurrent.locks.Lock;
