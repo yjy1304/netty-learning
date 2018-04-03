@@ -5,7 +5,7 @@
     <modelVersion>4.0.0</modelVersion>
 
     <groupId>com.priv</groupId>
-    <artifactId>btrpc-spring</artifactId>
+    <artifactId>btrpc-server</artifactId>
     <version>1.0-SNAPSHOT</version>
 
     <parent>
@@ -45,8 +45,9 @@
 
         <dependency>
             <groupId>com.priv</groupId>
-            <artifactId>btrpc-client</artifactId>
+            <artifactId>btrpc-common</artifactId>
             <version>1.0-SNAPSHOT</version>
         </dependency>
+
     </dependencies>
 </project>

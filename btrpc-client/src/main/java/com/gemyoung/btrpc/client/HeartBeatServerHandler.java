@@ -1,4 +1,4 @@
-package com.gemyoung;
+package com.gemyoung.btrpc.client;
 
 import io.netty.channel.ChannelHandlerContext;
 import io.netty.channel.ChannelInboundHandlerAdapter;

@@ -1,7 +1,5 @@
 package com.gemyoung.btrpc.spring;
 
-import com.gemyoung.btrpc.client.NettyClient;
-
 import javax.annotation.PostConstruct;
 
 /**
