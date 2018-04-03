@@ -1,41 +1,15 @@
-# Created by .ignore support plugin (hsz.mobi)
-# project logs
-logs/
-out/
-
-# jrebel
-rebel.xml
-
-# maven ignore
-target/
-*.jar
-*.war
-*.zip
-*.tar
-*.tar.gz
-
-# eclipse ignore
-.settings/
-.project
-.classpath
-
-# idea ignore
 .idea/
-*.ipr
+.settings/
+target/
+.classpath
+.project
 *.iml
-*.iws
-
-# temp ignore
-*.log
-*.cache
-*.diff
-*.patch
-*.tmp
-
-# system ignore
+logback/
+logs/
 .DS_Store
-Thumbs.db
-LOG_HOME_IS_UNDEFINED/
-
-# npm package
-node_modules
+*/.gitignore
+*/.log
+logback/
+.gitignore
+app.log.dir_IS_UNDEFINED/
+.idea/workspace.xml
