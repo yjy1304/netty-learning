@@ -9,12 +9,13 @@ import org.springframework.context.support.ClassPathXmlApplicationContext;
  */
 public class SpringTest {
     @Test
-    public void testRpcReqProxyFactoryBean(){
+    public void testRpcReqProxyFactoryBean() throws Exception{
         ClassPathXmlApplicationContext ctx = new ClassPathXmlApplicationContext(SpringTest.class.getPackage().getName().replace('.', '/') + "/spring-test.xml");
         ctx.start();
         try{
-            RemoteService remoteService = (RemoteService)ctx.getBean("rpcReqProxy");
-            remoteService.call("1", "2");
+            RemoteService2 remoteService2 = (RemoteService2)ctx.getBean("remoteService2");
+            String ret = remoteService2.call("1", "2");
+            System.out.println(ret);
         } finally {
             ctx.stop();
             ctx.close();

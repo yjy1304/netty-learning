@@ -1,31 +1,41 @@
 package com.gemyoung.btrpc.client;
 
+import com.oracle.webservices.internal.api.message.PropertySet;
 import io.netty.bootstrap.Bootstrap;
 import io.netty.channel.*;
 import io.netty.channel.nio.NioEventLoopGroup;
 import io.netty.channel.socket.SocketChannel;
 import io.netty.channel.socket.nio.NioSocketChannel;
+import io.netty.handler.codec.LengthFieldBasedFrameDecoder;
+import io.netty.handler.codec.LengthFieldPrepender;
+import io.netty.handler.codec.serialization.ClassResolvers;
+import io.netty.handler.codec.serialization.ObjectDecoder;
+import io.netty.handler.codec.serialization.ObjectEncoder;
 import io.netty.handler.codec.string.StringDecoder;
 import io.netty.util.HashedWheelTimer;
 import io.netty.util.Timeout;
 import io.netty.util.Timer;
 import io.netty.util.TimerTask;
+import org.springframework.beans.factory.InitializingBean;
+import org.springframework.stereotype.Service;
 
+import javax.annotation.PostConstruct;
 import java.util.concurrent.TimeUnit;
 
 /**
  * Created by 健民 on 2018/1/4.
  */
 @ChannelHandler.Sharable
-public class NettyClient extends ChannelInboundHandlerAdapter implements TimerTask, ChannelHandlerHolder{
+public class NettyClient extends ChannelInboundHandlerAdapter implements TimerTask{
     private Bootstrap bootstrap;
-    private final static String IP_ADDRESS = "127.0.0.1";
-    private final static Integer PORT = 8083;
+    private String ipAddr = "127.0.0.1";
+    private Integer port = 8082;
 
     private Timer timer = new HashedWheelTimer();
-    public static void main(String[] args) throws Exception{
-        NettyClient nettyClient = new NettyClient();
-        nettyClient.doConnect();
+
+    public NettyClient(String ipAddr, Integer port){
+        this.ipAddr = ipAddr;
+        this.port = port;
     }
 
     public ChannelFuture doConnect() throws InterruptedException {
@@ -33,18 +43,18 @@ public class NettyClient extends ChannelInboundHandlerAdapter implements TimerTa
         EventLoopGroup group = new NioEventLoopGroup();
         bootstrap.group(group)
                 .channel(NioSocketChannel.class)
+                .option(ChannelOption.SO_KEEPALIVE, true)
                 .handler(new ChannelInitializer<SocketChannel>() {
                     @Override
                     protected void initChannel(SocketChannel sc) throws Exception {
-                        sc.pipeline().addLast(handlers());
+                        sc.pipeline().addLast(new LengthFieldBasedFrameDecoder(Integer.MAX_VALUE, 0, 4, 0, 4))
+                                    .addLast(new LengthFieldPrepender(4))
+                                    .addLast(new ObjectEncoder())
+                                    .addLast(new ObjectDecoder(Integer.MAX_VALUE, ClassResolvers.weakCachingConcurrentResolver(this.getClass().getClassLoader())))
+                                    .addLast(new MessageSendHandler());
                     }
                 });
-        return bootstrap.connect(IP_ADDRESS, PORT);
-    }
-
-    @Override
-    public ChannelHandler[] handlers() {
-        return new ChannelHandler[]{new StringDecoder(), new StringDecoder(), this};
+        return bootstrap.connect(ipAddr, port);
     }
 
     @Override

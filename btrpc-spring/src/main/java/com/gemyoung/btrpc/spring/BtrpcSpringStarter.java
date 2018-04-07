@@ -1,5 +1,7 @@
 package com.gemyoung.btrpc.spring;
 
+import com.gemyoung.btrpc.client.NettyClient;
+
 import javax.annotation.PostConstruct;
 
 /**
@@ -9,6 +11,5 @@ import javax.annotation.PostConstruct;
 public class BtrpcSpringStarter {
     @PostConstruct
     public void init(){
-        new NettyClient();
     }
 }
